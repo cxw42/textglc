@@ -346,7 +346,7 @@ void render(int tick)
 void demomain()
 {
 	// The bitmap-ascii art converter object
-	TFX_AsciiArt caa;
+	TFX_ColAsciiArt caa;
 
 	TFX_SetTitle("Wait, precalculating..");
 	caa.BuildLUT(); // You know, when I originally wrote TextFX, this step took SECONDS
@@ -366,6 +366,10 @@ void demomain()
 
 	unsigned int starttick = GetTickCount();
 	int key = 0;
+
+	UINT cp = GetConsoleOutputCP(); // A little debug info
+	char cptxt[256];
+	_itoa(cp, cptxt, 10);
 
 	while(key != 0x1b) // while not esc
 	{
@@ -406,6 +410,9 @@ void demomain()
 		for (i = 0; i < 14; i++)
 			TFX_FrameBuffer[50*80-14+i] = sometext[i] | (((i + (tick >> 4)) & 0xf) << 8);
 
+		for (size_t idx = 0; idx < strlen(cptxt); ++idx) {
+			TFX_FrameBuffer[49 * 80 + idx] = cptxt[idx] | 0x0f00;
+		}
 		// dump the text mode framebuffer to the console
 		TFX_Present();
 	}

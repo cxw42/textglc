@@ -2,6 +2,7 @@
 .hgignore
 build/Release/*
 build/Debug/*
+build/.vs/*
 build/ipch/*
 build/textgl.sdf
 build/textgl.VC.opendb
