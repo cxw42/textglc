@@ -1,5 +1,9 @@
 .hg/
 .hgignore
 build/Release/*
+build/Debug/*
 build/ipch/*
 build/textgl.sdf
+build/textgl.VC.opendb
+build/textgl.vcxproj.user
+
