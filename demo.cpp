@@ -371,6 +371,8 @@ void demomain()
 	char cptxt[256];
 	_itoa(cp, cptxt, 10);
 
+	SetConsoleOutputCP(1252);	// because we may not be in Sweden
+	
 	while(key != 0x1b) // while not esc
 	{
 		// read key if one is pending. _getch() alone would block.
